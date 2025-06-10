@@ -96,3 +96,33 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+# for ecosystem.config.js configuration
+@nestjs/config  
+
+# for creating jwt token
+npm install @nestjs/jwt
+
+
+✅ NestJS Built-in Exceptions and Status Codes
+Exception Class	HTTP Status Code	Meaning
+BadRequestException	400	Invalid client request (e.g. missing/invalid data)
+UnauthorizedException	401	Authentication failed or token missing
+PaymentRequiredException	402	Reserved (rarely used)
+ForbiddenException	403	Authenticated, but not authorized
+NotFoundException	404	Resource not found
+MethodNotAllowedException	405	Method not supported (e.g. POST on a GET-only route)
+NotAcceptableException	406	Content not acceptable (based on Accept header)
+RequestTimeoutException	408	Request took too long
+ConflictException	409	Conflict with existing resource (e.g. duplicate user/email)
+GoneException	410	Resource permanently gone
+PayloadTooLargeException	413	Uploaded data too large
+UnsupportedMediaTypeException	415	Content-type not supported
+UnprocessableEntityException	422	Semantically invalid input
+InternalServerErrorException	500	Generic server error
+NotImplementedException	501	Feature not implemented
+BadGatewayException	502	Invalid response from upstream
+ServiceUnavailableException	503	Server not ready or overloaded
+GatewayTimeoutException	504	Timeout from upstream server
+
+
