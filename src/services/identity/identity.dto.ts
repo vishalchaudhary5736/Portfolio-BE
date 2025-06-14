@@ -38,12 +38,31 @@ export class CreateAboutMeDto {
 
 export class LoginUserDto {
 
-  @IsNotEmpty({message:"Identity is required field"})
+  @IsNotEmpty({message:"Identifier is required field"})
   identifier: string;
 
   @IsNotEmpty({ message: 'Password is required' })
   @MinLength(8, { message: 'Password must be at least 8 characters' })
   @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,{message:"Password must include at least one uppercase letter, one lowercase letter, one number, and one special character"})
   password: string;
+
+}
+
+
+export class AddProjectDto {
+
+    @IsNotEmpty({message:"title is required field"})
+    @MinLength(2,{message:"title must be at least 2 character"})
+    title:string;
+
+    @IsNotEmpty({message:"description is required field"})
+    @MinLength(15,{message:"description must be at least 15 character"})
+    description:string;
+
+    @IsNotEmpty({message:"tech is required field"})
+    tech:string[];
+   
+    @IsNotEmpty({message:"liveLink is required field"})
+    liveLink:string;
 
 }

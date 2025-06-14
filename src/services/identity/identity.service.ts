@@ -1,6 +1,5 @@
 import {
   Injectable,
-  Controller,
   ConflictException,
   HttpException,
   InternalServerErrorException,
@@ -9,7 +8,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { SharedService } from '../shared/shared.service';
 import { RESPONSE_MESSAGE, SCHEMA_NAME } from '../shared/utility/constants';
-import { CreateAboutMeDto, CreateUserDto, LoginUserDto } from './identity.dto';
+import { AddProjectDto, CreateAboutMeDto, CreateUserDto, LoginUserDto } from './identity.dto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -125,6 +124,25 @@ export class IdentityService {
       delete isExistUser.password;
       const accessToken = await this.jwtService.signAsync(jwtPayload);
       return {accessToken,...isExistUser}
+    } catch (error) {
+      console.log('data:',error)
+      if (error instanceof HttpException) throw error;
+      throw new InternalServerErrorException(error,
+      );
+    }
+  }
+
+  async addProject(addProjectDto:AddProjectDto):Promise<any>{
+    /** {
+      title: 'Vedichom.com',
+      description: 'An online platform for vedic astrology services and consultations. Built with a modern tech stack for a seamless user experience.',
+      tech: ['React.js', 'Node.js', 'MongoDB', 'Payment Gateway'],
+      gradient: 'gradient-bg',
+      liveLink: 'https://vedichom.com',
+      codeLink: '#' 
+    }, */
+    try {
+       const isAleadyExist = await this.IdentityModel().findOne({$or:[{title:addProjectDto.title},{liveLink:addProjectDto.liveLink}]})
     } catch (error) {
       console.log('data:',error)
       if (error instanceof HttpException) throw error;
